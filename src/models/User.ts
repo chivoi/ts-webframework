@@ -1,19 +1,17 @@
+interface UserProps {
+    name?: string;
+    age?: number;
+}
+
 export class User {
-    name: string;
-    age: number;
+    constructor(private data: UserProps) { }
 
-    constructor(name: string, age: number) {
-        this.name = name;
-        this.age = age;
+    get(propName: string): string | number {
+        return this.data[propName];
     }
 
-    public get(propName: string): string | number {
-        return propName === "name" ? this.name : this.age;
-    }
-
-    public set(propName: string, value: string | number): void {
-        if (propName === "name") this.name = value as string;
-        if (propName === "age") this.age = value as number;
+    set(update: UserProps): void {
+        Object.assign(this.data, update);
     }
 
 
